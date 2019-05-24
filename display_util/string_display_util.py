@@ -105,7 +105,7 @@ class ListTypes(Enum):
     UNORDERED = 2
 
 
-def print_list(arr: list, format: str = "{}: {}", type: ListTypes = ListTypes.NUMERIC_ORDERED):
+def print_list(arr: list, format: str = "{}: {}", type: ListTypes = ListTypes.NUMERIC_ORDERED, begin: str = '', **kwargs):
     """Prints a list to the screen in a neat fashion.
 
     format is a string used to determine layout of the element, default is '{}: {}' where the first is the index,
@@ -113,28 +113,29 @@ def print_list(arr: list, format: str = "{}: {}", type: ListTypes = ListTypes.NU
 
     if type == ListTypes.NUMERIC_ORDERED:
         for i, e in enumerate(arr):
-            print(format.format(i, e))
+            print(begin + format.format(i, e), **kwargs)
     elif type == ListTypes.ALPHA_ORDERED:
         for i, e in enumerate(arr):
-            print(format.format(chr(ord('a') + i), e))
+            print(begin + format.format(chr(ord('a') + i), e), **kwargs)
     else:
         for e in arr:
-            print(format.format('•', e))
+            print(begin + format.format('•', e), **wkargs)
 
 
-def print_info(string: str):
+def print_info(string: str, begin: str = '', **kwargs):
     """Prints an info prompt to the console
     info prompts have '[INFO]' as a prefix and are printed in Yellow."""
-    print(Fore.YELLOW + "[INFO] " + string + Fore.RESET)
+    print(begin + Fore.YELLOW + "[INFO] " + string + Fore.RESET)
 
 
-def print_warning(string: str):
+def print_warning(string: str, begin: str = '', **kwargs):
     """Prints an warning prompt to the console
     warning prompts have '[WARNING]' as a prefix and are printed in Red."""
-    print(Fore.RED + "[WARNING] " + string + Fore.RESET)
+    print(begin + Fore.RED + "[WARNING] " + string + Fore.RESET)
 
 
-def print_notification(string: str):
+def print_notification(string: str, begin: str = '', **kwargs):
     """Prints an notification prompt to the console
     notification prompts have '[NOTIFICATION]' as a prefix and are printed in Green."""
-    print(Fore.GREEN + "[NOTIFICATION] " + string + Fore.RESET)
+    print(begin + Fore.GREEN + "[NOTIFICATION] " + string + Fore.RESET)
+
